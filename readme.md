@@ -1,5 +1,7 @@
 ## **Readme: JavaScript Advanced Concepts**
 
+Check out the live version of the project here: [Live Demo](https://hiranj-rkit-training.github.io/AdvanceJS/)
+
 ### **1. Advanced Concepts**
 
 #### **1.1. Session Storage & LocalStorage**
