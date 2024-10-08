@@ -66,6 +66,12 @@ let GetApi = async (query = "trending") => {
 
 // function to change brand on click 
 let GetBrand = (brand) => {
+    let buttons = document.querySelectorAll('.brandsButton');
+    buttons.forEach(button => {
+        button.classList.remove('seletedBrand');
+    });
+    brand.classList.toggle("seletedBrand")
+    console.log(brand)
     console.log(brand.value);
     // creating UI
     // Function LOC - index.js
