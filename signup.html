@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        #singupForm {
+            align-self: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- sign up Form -->
+    <div id="singupForm">
+        <form action="./home.html">
+            <fieldset style=" display: flex; flex-direction: column;">
+                <legend>Signup</legend>
+                <label for="usrFirstName"> First Name : </label>
+                <input type="text" name="firstName" id="usrFirstName">
+                <label for="usrLastName"> Last Name : </label>
+                <input type="text" name="lastName" id="usrLastName">
+                <label for="usrEmail">Email :</label>
+                <input type="email" name="email" id="usrEmail" required>
+                Gender :
+                <div>
+                    <input type="radio" name="male" id="usrMale" value="Male">
+                    <label for="usrMale">Male </label>
+                </div>
+                <div>
+                    <input type="radio" name="female" id="usrFemale" value="female">
+                    <label for="usrFemale">Female </label>
+                </div>
+                <label> City : </label>
+                <select name="cities" id="usrCity">
+                    <option value="jamnagar" selected> Jamnagar</option>
+                    <option value="rajkot"> Rajkot</option>
+                    <option value="surat"> Surat</option>
+                    <option value="dwarka"> Dwarka</option>
+                </select>
+                <br>
+                <label for="usrProfilePic"> Profile Picture : </label>
+                <input type="file" name="usrProfilePic" id="usrProfilePic" accept="image/*">
+                <br>
+                <label for="usrEmail">Password : </label>
+                <input type="password" name="password" id="usrPassword" required>
+                <label for="cnfrmPassword">Confirm Password : </label>
+                <input type="password" name="cnfrmPassword" id="cnfrmPassword" required>
+                <br>
+                <input type="submit" name="Signup" id="submit">
+            </fieldset>
+        </form>
+        <a href="./login.html">or login</a>
+</body>
+
+</html>
