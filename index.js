@@ -1,5 +1,7 @@
 // console.log("connected");
-
+// import { CreateShoeBox as cp } from "./createUI";
+import CreateBox from './createUI.js';
+// let cp = require('./createUI');
 // API URL
 const baseUrl = "https://xw7sbct9v6-1.algolianet.com/1/indexes/products/query?x-algolia-agent=Algolia%20for%20vanilla%20JavaScript%203.32.1&x-algolia-application-id=XW7SBCT9V6&x-algolia-api-key=6b5e76b49705eb9f51a06d3c82f7acee";
 
@@ -16,32 +18,12 @@ const headers = {
 }
 
 
-// funtion to create shoeBox UI
-let CreateShoeBox = (shoe) => {
-    // creating shoe thumbmail
-    let thumbmail = document.createElement("img");
-    thumbmail.setAttribute('src', shoe['thumbnail_url'])
 
-    // creating shoe title
-    let shoeName = document.createElement('h5')
-    shoeName.appendChild(document.createTextNode(shoe['name']));
-
-    // creating shoe price
-    let shoePrice = document.createElement('h4')
-    shoePrice.appendChild(document.createTextNode(`\$${shoe['price']}`));
-    //appending in div and setting class Shoebox
-    let shoeBox = document.createElement('div');
-    shoeBox.classList.add("shoeBox");
-    shoeBox.appendChild(thumbmail);
-    shoeBox.appendChild(shoeName);
-    shoeBox.appendChild(shoePrice);
-    // appending in already created div
-    let shoeGrid = document.getElementById("shoesGrid");
-    shoeGrid.appendChild(shoeBox);
-}
-
-// funtction to make API CALL
-let GetApi = async (query = "trending") => {
+/*
+    called from index.js/GetBrand()
+    funtction to make API CALL
+*/
+let GetData = async (query = "trending") => {
     // Clearing the Div
     document.getElementById('shoesGrid').innerHTML = "";
     console.log(query);
@@ -56,16 +38,27 @@ let GetApi = async (query = "trending") => {
     let data = await response.json();
     console.log(data)
     // Creating UI for each Shoe
-    data['hits'].forEach(element => {
-        //Creating UI
-        //function Loc - index.js
-        CreateShoeBox(element);
+    let shoes = data['hits'];
+    // console.log(shoes);
+    shoes.forEach(element => {
+
+        let shoe = {
+            name: element['name'],
+            photo: element['thumbnail_url'],
+            price: element['price'],
+        }
+
+        let createdUi = CreateBox(shoe);
+        let shoeGrid = document.getElementById("shoesGrid");
+        shoeGrid.appendChild(createdUi);
+
     });
 
 }
 
 // function to change brand on click 
 let GetBrand = (brand) => {
+    //unselecting all buttons 
     let buttons = document.querySelectorAll('.brandsButton');
     buttons.forEach(button => {
         button.classList.remove('seletedBrand');
@@ -75,7 +68,26 @@ let GetBrand = (brand) => {
     console.log(brand.value);
     // creating UI
     // Function LOC - index.js
-    GetApi(brand.value);
+    GetData(brand.value);
 }
+
+// called in login.html/submit(id)
+// to Store login Data to local Storage and Login Time in cookies 
+let StoreData = () => {
+    let usrEmail = document.getElementById("usrEmail").value;
+    let usrPass = document.getElementById("usrPassword").value;
+    console.log(usrEmail);
+    localStorage.setItem("Email", usrEmail);
+    localStorage.setItem("Password", usrPass);
+    console.log(localStorage.getItem('Email'));
+    document.cookie = `time=${Date.now()}`
+}
+
+
+
+
+
+window.StoreData = StoreData;
+window.GetBrand = GetBrand;
 //init call 
-GetApi();
+GetData();

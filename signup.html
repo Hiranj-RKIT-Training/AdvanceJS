@@ -20,7 +20,7 @@
 <body>
     <!-- sign up Form -->
     <div id="singupForm">
-        <form action="./home.html">
+        <form id="signup">
             <fieldset style=" display: flex; flex-direction: column;">
                 <legend>Signup</legend>
                 <label for="usrFirstName"> First Name : </label>
@@ -28,7 +28,7 @@
                 <label for="usrLastName"> Last Name : </label>
                 <input type="text" name="lastName" id="usrLastName">
                 <label for="usrEmail">Email :</label>
-                <input type="email" name="email" id="usrEmail" required>
+                <input type="email" name="email" id="usrEmail">
                 Gender :
                 <div>
                     <input type="radio" name="male" id="usrMale" value="Male">
@@ -50,14 +50,15 @@
                 <input type="file" name="usrProfilePic" id="usrProfilePic" accept="image/*">
                 <br>
                 <label for="usrEmail">Password : </label>
-                <input type="password" name="password" id="usrPassword" required>
+                <input type="password" name="password" id="usrPassword">
                 <label for="cnfrmPassword">Confirm Password : </label>
-                <input type="password" name="cnfrmPassword" id="cnfrmPassword" required>
+                <input type="password" name="cnfrmPassword" id="cnfrmPassword">
                 <br>
                 <input type="submit" name="Signup" id="submit">
             </fieldset>
         </form>
         <a href="./login.html">or login</a>
+        <script src="./signup.js"></script>
 </body>
 
 </html>
